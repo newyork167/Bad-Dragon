@@ -1,4 +1,4 @@
-DOCKER_DIR='../DockerShare/docker'
+DOCKER_DIR='~/docker/kali'
 
 if [[ ! -d $DOCKER_DIR ]]; then
     mkdir -p $DOCKER_DIR/config
