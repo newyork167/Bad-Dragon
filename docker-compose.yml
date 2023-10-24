@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  kali-m1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/x86_64
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    user: root
+    stdin_open: true
+    tty: true
+    privileged: true
+    extra_hosts:
+      - "kali-docker:127.0.0.1"
+    environment:
+      - DISPLAY
+      - FAKETIME="+1h"
+      - VNCEXPOSE=1
+    ports:
+      - "8443:8443"  # http://localhost:8443/
+      - "8000:8000"
+      - "8080:8080"
+      - "3090:3090"
+    volumes:
+      - ${DOCKERSHARE}/Shared:/share
+      - ~/Development:/root/development
+      - ~/Downloads:/root/Downloads
+      - ${DOCKERSHARE}/ssh:/root/.ssh
+      - ${DOCKERSHARE}/config:/root/.config
+      # - ./start.sh:/start.sh:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    container_name: kali-m1

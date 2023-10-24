@@ -1,0 +1,5 @@
+./docker/
+./Shared
+./ssh/*_rsa*
+./ssh/known_hosts*
+
